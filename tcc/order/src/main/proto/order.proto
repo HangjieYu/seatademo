@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package Tcc.OrderService;
+
+service OrderService {
+
+    rpc Add (Request) returns (Response) {
+    }
+
+}
+
+message Request {
+
+    string request_id = 1;
+}
+
+message Response {
+
+    string request_id = 1;
+}

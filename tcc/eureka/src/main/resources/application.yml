@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: seata-tcc-rm-one
+  datasource:
+    url: jdbc:mysql://192.168.202.137:3306/tcc_order
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: default
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}

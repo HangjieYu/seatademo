@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package Tcc.OrderService;
+package Tcc.StorageService;
 
-service OrderService {
+service StorageService {
 
     rpc Add (Request) returns (Response) {
     }

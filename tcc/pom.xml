@@ -15,9 +15,9 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>eureka</module>
         <module>business</module>
         <module>order</module>
+        <module>storage</module>
     </modules>
 
     <properties>
@@ -27,6 +27,7 @@
         <proto.version>3.2.0</proto.version>
         <grpc.version>2.3.0.RELEASE</grpc.version>
         <netty.version>4.1.28.Final</netty.version>
+        <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
     </properties>
 
     <dependencies>
@@ -48,4 +49,17 @@
             <version>1.0.0</version>
         </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
 </project>

@@ -4,7 +4,7 @@ import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.ServerInterceptors;
 import io.seata.integration.grpc.interceptor.server.ServerTransactionInterceptor;
-import io.seata.service.OrderGrpcService;
+import io.seata.service.StorageGrpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -15,16 +15,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author mingdao
  */
 @SpringBootApplication
-public class OrderServerApplication implements CommandLineRunner {
+public class StorageServerApplication implements CommandLineRunner {
 
-    @Value("${order.server.port}")
+    @Value("${storage.server.port}")
     int port;
 
     @Autowired
-    private OrderGrpcService orderGrpcService;
+    private StorageGrpcService storageGrpcService;
 
     public static void main(String[] args) {
-        SpringApplication.run(OrderServerApplication.class, args);
+        SpringApplication.run(StorageServerApplication.class, args);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class OrderServerApplication implements CommandLineRunner {
         // TODO Auto-generated method stub
         ServerBuilder<?> serverBuilder = ServerBuilder.forPort(port);
         Server server = serverBuilder
-                .addService(ServerInterceptors.intercept(orderGrpcService, new ServerTransactionInterceptor()))
+                .addService(ServerInterceptors.intercept(storageGrpcService, new ServerTransactionInterceptor()))
                 .build();
         server.start();
         Runtime.getRuntime().addShutdownHook(new Thread() {

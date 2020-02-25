@@ -1,7 +1,7 @@
 package io.seata.service;
 
-import Tcc.OrderService.Order;
-import Tcc.OrderService.OrderServiceGrpc;
+import Tcc.StorageService.Storage;
+import Tcc.StorageService.StorageServiceGrpc;
 import io.grpc.stub.StreamObserver;
 import io.seata.core.context.RootContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,20 +11,19 @@ import org.springframework.stereotype.Component;
  * @author mingdao
  */
 @Component
-public class OrderGrpcService extends OrderServiceGrpc.OrderServiceImplBase {
+public class StorageGrpcService extends StorageServiceGrpc.StorageServiceImplBase {
 
     @Autowired
-    private OrderAction orderAction;
+    private StorageAction storageAction;
 
     @Override
-    public void add(Order.Request request, StreamObserver<Order.Response> responseObserver) {
-
+    public void add(Storage.Request request, StreamObserver<Storage.Response> responseObserver) {
         String xid = RootContext.getXID();
         System.out.println(xid);
 
-        orderAction.prepare(null, request.getRequestId());
+        storageAction.prepare(null, request.getRequestId());
 
-        Order.Response response = Order.Response.newBuilder().setTxXid(xid).build();
+        Storage.Response response = Storage.Response.newBuilder().setTxXid(xid).build();
 
         responseObserver.onNext(response);
         responseObserver.onCompleted();

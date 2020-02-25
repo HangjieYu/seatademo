@@ -16,5 +16,5 @@ message Request {
 
 message Response {
 
-    string request_id = 1;
+    string tx_xid = 1;
 }

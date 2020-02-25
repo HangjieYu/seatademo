@@ -9,7 +9,7 @@ import io.seata.rm.tcc.api.TwoPhaseBusinessAction;
  * @author mingdao
  */
 @LocalTCC
-public interface OrderAction {
+public interface StorageAction {
 
     /**
      * Prepare boolean.
@@ -18,7 +18,7 @@ public interface OrderAction {
      * @param user
      * @return the boolean
      */
-    @TwoPhaseBusinessAction(name = "OrderAction", commitMethod = "commit", rollbackMethod = "rollback")
+    @TwoPhaseBusinessAction(name = "StorageAction", commitMethod = "commit", rollbackMethod = "rollback")
     boolean prepare(BusinessActionContext actionContext, @BusinessActionContextParameter(paramName = "user") String user);
 
     /**

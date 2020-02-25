@@ -9,18 +9,17 @@ import org.springframework.stereotype.Service;
  * @author mingdao
  */
 @Service
-public class OrderActionImpl implements OrderAction {
+public class StorageActionImpl implements StorageAction {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(OrderActionImpl.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(StorageActionImpl.class);
 
     @Override
-    public boolean prepare(BusinessActionContext actionContext, String user) {
+    public boolean prepare(BusinessActionContext actionContext, String order) {
         if (null == actionContext) {
             return false;
         }
         String xid = actionContext.getXid();
-        LOGGER.error("OrderAction prepare, xid:" + xid);
-        LOGGER.error("OrderAction prepare, user:" + user);
+        LOGGER.error("StorageAction prepare, xid:" + xid);
 
         return true;
     }
@@ -29,10 +28,10 @@ public class OrderActionImpl implements OrderAction {
     public boolean commit(BusinessActionContext actionContext) {
 
         String xid = actionContext.getXid();
-        LOGGER.error("OrderAction commit, xid:" + xid);
+        LOGGER.error("StorageAction commit, xid:" + xid);
 
-        String user = actionContext.getActionContext("user").toString();
-        LOGGER.error("OrderAction commit, user:" + user);
+        String order = actionContext.getActionContext("order").toString();
+        LOGGER.error("StorageAction commit, order:" + order);
 
         return true;
     }
@@ -41,7 +40,7 @@ public class OrderActionImpl implements OrderAction {
     public boolean rollback(BusinessActionContext actionContext) {
 
         String xid = actionContext.getXid();
-        LOGGER.error("OrderAction rollback, xid:" + xid);
+        LOGGER.error("StorageAction rollback, xid:" + xid);
         return true;
     }
 }

@@ -1,16 +1,14 @@
 package io.seata.controller;
 
-//import io.seata.sample.service.BusinessService;
 import io.seata.service.BusinessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * @author jimin.jm@alibaba-inc.com
- * @date 2019/06/14
- */
 
+/**
+ * @author mingdao
+ */
 @RestController
 public class BusinessController {
 
@@ -22,29 +20,10 @@ public class BusinessController {
      *
      * @return
      */
-    @RequestMapping(value = "/purchase/commit", produces = "application/json")
-    public String purchaseCommit() {
-        try {
-            businessService.purchase("U100000", "C100000", 30);
-        } catch (Exception exx) {
-            return exx.getMessage();
-        }
-        return "全局事务提交";
-    }
+    @RequestMapping(value = "/purchase", produces = "application/json")
+    public void purchase() {
 
-    /**
-     * 购买下单，模拟全局事务回滚
-     * 账户或库存不足
-     *
-     * @return
-     */
-    @RequestMapping("/purchase/rollback")
-    public String purchaseRollback() {
-        try {
-//            businessService.purchase("U100000", "C100000", 99999);
-        } catch (Exception exx) {
-            return exx.getMessage();
-        }
-        return "全局事务提交";
+        businessService.purchase("U100000");
+
     }
 }

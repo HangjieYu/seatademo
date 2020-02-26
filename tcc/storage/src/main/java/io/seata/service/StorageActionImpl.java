@@ -14,12 +14,13 @@ public class StorageActionImpl implements StorageAction {
     private final static Logger LOGGER = LoggerFactory.getLogger(StorageActionImpl.class);
 
     @Override
-    public boolean prepare(BusinessActionContext actionContext, String order) {
+    public boolean prepare(BusinessActionContext actionContext, String user) {
         if (null == actionContext) {
             return false;
         }
         String xid = actionContext.getXid();
         LOGGER.error("StorageAction prepare, xid:" + xid);
+        LOGGER.error("StorageAction prepare, user:" + user);
 
         return true;
     }
@@ -29,9 +30,8 @@ public class StorageActionImpl implements StorageAction {
 
         String xid = actionContext.getXid();
         LOGGER.error("StorageAction commit, xid:" + xid);
-
-        String order = actionContext.getActionContext("order").toString();
-        LOGGER.error("StorageAction commit, order:" + order);
+        String user = actionContext.getActionContext("user").toString();
+        LOGGER.error("StorageAction commit, user:" + user);
 
         return true;
     }
@@ -41,6 +41,9 @@ public class StorageActionImpl implements StorageAction {
 
         String xid = actionContext.getXid();
         LOGGER.error("StorageAction rollback, xid:" + xid);
+        String user = actionContext.getActionContext("user").toString();
+        LOGGER.error("StorageAction rollback, user:" + user);
+
         return true;
     }
 }

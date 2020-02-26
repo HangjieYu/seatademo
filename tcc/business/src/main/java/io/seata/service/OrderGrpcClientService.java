@@ -20,14 +20,14 @@ public class OrderGrpcClientService {
     @GrpcClient("OrderService")
     private Channel channel;
 
-    public void add(String requestId) {
+    public String add(String requestId) {
 
         OrderServiceGrpc.OrderServiceBlockingStub stub = OrderServiceGrpc.newBlockingStub(ClientInterceptors.intercept(channel, new ClientTransactionInterceptor()));
 
         Order.Response response = stub.add(Order.Request.newBuilder()
                 .setRequestId(requestId).build());
 
-        System.out.println(response.getTxXid());
+        return response.getTxXid();
     }
 
 }

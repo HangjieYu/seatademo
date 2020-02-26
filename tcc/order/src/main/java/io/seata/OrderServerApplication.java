@@ -29,7 +29,6 @@ public class OrderServerApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // TODO Auto-generated method stub
         ServerBuilder<?> serverBuilder = ServerBuilder.forPort(port);
         Server server = serverBuilder
                 .addService(ServerInterceptors.intercept(orderGrpcService, new ServerTransactionInterceptor()))
@@ -38,11 +37,10 @@ public class OrderServerApplication implements CommandLineRunner {
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
-                System.err.println("*** shutting down gRPC server since JVM is shutting down");
+                System.err.println("server shut down");
                 if (server != null) {
                     server.shutdown();
                 }
-                System.err.println("*** server shut down");
             }
         });
     }

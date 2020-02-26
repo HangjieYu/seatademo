@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package Tcc.StorageService;
+
+service StorageService {
+
+    rpc Add (Request) returns (Response) {
+    }
+
+}
+
+message Request {
+
+    string request_id = 1;
+}
+
+message Response {
+
+    string tx_xid = 1;
+}

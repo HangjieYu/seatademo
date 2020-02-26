@@ -30,10 +30,8 @@ public class OrderActionImpl implements OrderAction {
 
         String xid = actionContext.getXid();
         LOGGER.error("OrderAction commit, xid:" + xid);
-
         String user = actionContext.getActionContext("user").toString();
         LOGGER.error("OrderAction commit, user:" + user);
-
         return true;
     }
 
@@ -42,6 +40,8 @@ public class OrderActionImpl implements OrderAction {
 
         String xid = actionContext.getXid();
         LOGGER.error("OrderAction rollback, xid:" + xid);
+        String user = actionContext.getActionContext("user").toString();
+        LOGGER.error("OrderAction rollback, user:" + user);
         return true;
     }
 }

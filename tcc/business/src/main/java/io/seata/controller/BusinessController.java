@@ -32,8 +32,8 @@ public class BusinessController {
                          @RequestParam(name = "callback") Boolean callback) {
 
         // 减库存，下订单
-        storageGrpcClientService.add(user);
         orderGrpcClientService.add(user);
+        storageGrpcClientService.add(user);
 
         if (callback) {
             throw new RuntimeException("执行回滚");
